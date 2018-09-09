@@ -1,0 +1,20 @@
+# Theme metadata
+name = "Bitter"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#f18700"
+primary_light = "#6ec6ff"
+primary_dark = "#0069c0"
+
+# Menu
+menu_primary = "#004985"
+menu_text = "#ffffff"
+menu_text_active = "#f18700"
+menu_title = "#ffffff"
+
+# Home sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "rgb(247, 247, 247)"

@@ -1,0 +1,18 @@
+<div class="container" style="padding-top: 5px">
+
+    <span class="links">
+        {{ template "breadcrumb" dict "page" . "value" .Title }}   
+    </span>
+</div>
+
+<hr style="margin-top: 5px; margin-bottom: 5px">
+
+{{define "breadcrumb"}}
+    {{$parent := .page.Parent }}
+    {{ if $parent }}
+        {{ $value := (printf "<a href='%s'>%s</a> > %s" $parent.URL $parent.Title .value) }}
+        {{ template "breadcrumb" dict "page" $parent "value" $value }} 
+    {{else}}
+        {{.value|safeHTML}}
+    {{end}}
+{{end}}

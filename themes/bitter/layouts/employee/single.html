@@ -1,0 +1,79 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+<div class="container body-content docs">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 body">
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  {{ partial "header_image.html" . }}
+
+  <div class="article-container">
+
+    <div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="{{ if $.Site.Params.email }}person-email{{ end }}{{ if $.Site.Params.phone }} person-telephone{{ end }}{{ if $.Site.Params.address}} person-address{{ end }}">
+        <div class="col-xs-12 col-md-4">
+          <div id="profile">
+      
+            {{ if .Params.image }}
+            <div class="portrait" style="background-image: url('{{ .Params.image }}');"></div>
+            <meta itemprop="image" content="{{ .Params.image }}">
+            {{ else if $.Site.Params.avatar }}
+            <div class="portrait" style="background-image: url('{{ (printf "img/%s" $.Site.Params.avatar) | relURL }}');"></div>
+            <meta itemprop="image" content="{{ (printf "img/%s" $.Site.Params.avatar) | absURL }}">
+            {{ end }}
+      
+            <div class="portrait-title">
+              <h2 itemprop="name">{{ .Title }}</h2>
+              <ul class="fa-ul" itemscope>
+              {{ with .Params.telhuman }}
+                <li>
+                <i class="fa-li fa fa-phone" aria-hidden="true"></i>
+                <span id="person-telephone" itemprop="telephone">
+                <a href="tel:{{ $.Params.telcall }}">{{ . }}</a>
+                </span>
+                </li>
+                {{ end }}
+                {{ with .Params.handyhuman }}
+                <li>
+                <i class="fa-li fa fa-phone" aria-hidden="true"></i>
+                <span id="person-telephone" itemprop="telephone">
+                <a href="tel:{{ $.Params.handycall }}">{{ . }}</a>
+                </span>
+                </li>
+            {{ end }}
+            {{ with .Params.email }}
+                <li>
+                <i class="fa-li fa fa-envelope" aria-hidden="true"></i>
+                <span id="person-email" itemprop="email">
+                <a href="mailto:{{ . }}">{{ . }}</a>
+                </span>
+              </li>
+            {{ end }}
+            {{ with .Params.startdate }}
+                <li>
+                <i class="fa-li fa fa-calendar" aria-hidden="true"></i>
+                <span>
+                {{ . }}
+                </span>
+              </li>
+            {{ end }}
+        </ul>
+            </div>      
+          </div>
+        </div>
+      </div>
+
+    {{ if .Site.Params.section_pager }}
+    <div class="article-widget">
+      {{ partial "section_pager.html" . }}
+    </div>
+    {{ end }}
+
+    {{ partial "comments.html" . }}
+
+  </div>
+</article>
+      </div>
+    </div>
+</div>
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}

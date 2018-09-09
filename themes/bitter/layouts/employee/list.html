@@ -1,0 +1,59 @@
+{{ if .Params.widgets }}
+
+{{ partial "widget_page.html" . }}
+
+{{ else }}
+
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+
+{{ partial "header_image.html" . }}
+<div class="container body-content docs">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 body">
+    <article class="article" itemscope itemtype="http://schema.org/Article">
+<div class="article-container">
+
+  {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
+
+  {{ with .Content }}
+  <div class="article-style" itemprop="articleBody">{{ . }}</div>
+  {{ end }}
+
+  {{ $paginator := .Paginate .Data.Pages }}
+  <div>
+        <table>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Name</th>
+                <th>Telefon</th>
+                <th>Handy</th>
+                <th>Eintritt</th>
+            </tr>
+  {{ range $paginator.Pages }}
+  
+        <tr>
+            <td style="vertical-align: middle;">
+                <img src="/employee/{{ .Params.user }}/{{ .Params.image }}" alt="{{ .Title }}" style="width: 100px;">
+            </td>
+            <td style="vertical-align: middle;">{{.Title }}</td>
+            <td style="vertical-align: middle;"><a href="tel:{{ .Params.telcall }}">{{ .Params.telhuman }}</a></td>
+            <td style="vertical-align: middle;"><a href="tel:{{ .Params.handycall }}">{{ .Params.handyhuman }}</a></td>
+            <td style="vertical-align: middle;">{{ .Params.startdate }}</td>
+        </tr>
+    
+  {{ end }}
+</table>
+</div>
+
+  {{ partial "pagination" . }}
+
+</div>
+</article>
+</div>
+</div>
+</div>
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}
+
+{{ end }}

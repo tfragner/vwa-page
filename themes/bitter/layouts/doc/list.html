@@ -1,0 +1,60 @@
+{{ if .Params.widgets }}
+
+{{ partial "widget_page.html" . }}
+
+{{ else }}
+
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+{{ partial "breadcrumb.html" . }}
+{{ partial "header_image.html" . }}
+
+<div class="container">
+  {{ with .Title }}<h2 style="text-align: center">{{ . }}</h2>{{ end }}
+</div>
+
+<div class="container">
+
+  
+
+  {{ with .Content }}
+  <div class="article-style" itemprop="articleBody">{{ . }}</div>
+  {{ end }}
+
+  {{ $paginator := .Paginate .Data.Pages }}
+  {{ range $paginator.Pages.ByWeight.Reverse -}}
+  <div>
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <div class="article-style">
+      {{ if .Params.summary }}
+      {{ printf "%s" .Params.summary | markdownify }}
+      {{ else if .Truncated }}
+      {{ printf "%s" .Summary | markdownify }}
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ partial "pagination" . }}
+
+
+
+
+</div>
+<hr>
+<div class="container">
+    <div class="row featurette">
+      {{ range .Sections }}
+      {{ $pack := or .Params.icon_pack "fa" }}
+      <div class="col-sm-4">
+      {{ $p := . }}
+      {{ with .Params.icon }}<div class="featurette-icon"><a href="{{ $p.Permalink }}"><i class="{{ $pack }} {{ $pack }}-{{ . }}"></i></a></div>{{ end }}
+      <a href="{{ .Permalink }}"><h3>{{ .Params.name | markdownify | emojify }}</h3></a>
+      {{ with .Params.description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+      </div>
+      {{ end }}
+  </div>
+{{ partial "footer_container.html" . }}
+{{ partial "footer.html" . }}
+
+{{ end }}

@@ -1,0 +1,32 @@
+{{ partial "header.html" . }}
+{{ partial "navbar.html" . }}
+{{ partial "header_image.html" . }}
+
+{{ $letters := split "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "" }}
+<div class="container body-content docs">
+<h1>{{ .Title }}</h1>
+<article style="-webkit-columns: 4 300px;
+-moz-columns: 4 300px;
+columns: 4 300px;">
+{{ $start := false }}
+{{ range $key, $value := .Data.Terms }}
+    
+    {{ $firstChar := substr $key 0 1 | upper }}
+
+    {{ if $firstChar | in $letters }}
+        {{ $curLetter := $.Scratch.Get "curLetter" }}
+        {{ if ne $firstChar $curLetter }}
+            {{ $.Scratch.Set "curLetter" $firstChar }}
+            <h4>{{ $firstChar }}</h4>
+        {{ end }} 
+    {{ end }}
+        <li style="list-style: none">
+            <a href='{{ (print "/" $.Data.Plural "/" (lower $key)) | relURL }}'>
+            {{ $key }}
+            </a>
+            ({{ len $value }})
+        </li>
+{{ end }}
+</article>
+</div>
+{{ partial "footer.html" . }}

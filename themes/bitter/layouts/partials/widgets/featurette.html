@@ -1,0 +1,14 @@
+{{ $ := .root }}
+{{ $page := .page }}
+
+<div class="row featurette">
+  {{ range $page.Params.feature }}
+  {{ $pack := or .icon_pack "fa" }}
+  {{ $.Scratch.Set "url" .url }}
+  <div class="col-sm-4">
+    {{ with .icon }}<div class="featurette-icon"><a href="{{ $.Scratch.Get "url" }}"><i class="{{ $pack }} {{ $pack }}-{{ . }}"></i></a></div>{{ end }}
+    <a href="{{ .url }}"><h3>{{ .name | markdownify | emojify }}</h3></a>
+    {{ with .description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+  </div>
+  {{ end }}
+</div>
