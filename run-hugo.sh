@@ -1,1 +1,1 @@
-docker run -p 1313:1313 --rm -it -v $PWD:/usr/share/blog meroff/hugo-pandoc bash -C "./setup.sh"
+docker run -p 1313:1313 --rm -it -v $PWD:/usr/share/blog meroff/hugo-pandoc bash -C "./run-server.sh"
