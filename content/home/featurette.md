@@ -20,27 +20,27 @@ weight = 10
   icon_pack = "fa"
   name = "Themenbereich 1"
   description = "Thema finden, abgrenzen und recherchieren"
-  url = "/doc/tb-1-thema-finden-abgrenzen-und-recherchieren/"
+  url = "/doc/tb1-thema-finden-abgrenzen-und-recherchieren/"
   
 [[feature]]
   icon = "files-o"
   icon_pack = "fa"
   name = "Themenbereich 2"
   description = "Strukturierung wissenschaftlicher Arbeiten"
-  url = "/doc/tb-2-strukturierung-wissenschaftlicher-arbeiten/"
+  url = "/doc/tb2-strukturierung-wissenschaftlicher-arbeiten/"
 
 [[feature]]
   icon = "files-o"
   icon_pack = "fa"
   name = "Themenbereich 3"
   description = "Finden und Verwalten von Literatur"
-  url = "/doc/tb-3-finden-und-verwalten-von-literatur/"
+  url = "/doc/tb3-finden-und-verwalten-von-literatur/"
 
 [[feature]]
   icon = "files-o"
   icon_pack = "fa"
   name = "Themenbereich 4"
   description = "Schreiben wissenschaftlicher Arbeiten"
-  url = "/doc/tb-4-schreiben-wissenschaftlicher-arbeiten/"
+  url = "/doc/tb4-schreiben-wissenschaftlicher-arbeiten/"
 
 +++

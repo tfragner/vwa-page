@@ -20,9 +20,20 @@
   {{ with .Content }}
   <div class="article-style" itemprop="articleBody">{{ . }}</div>
   {{ end }}
+  {{ $p := . }}
+  {{ if .Params.url_pdf }}
+  <a class="btn btn-primary btn-outline" href="/{{ $p.Dir }}{{ $p.Params.url_pdf }}" target="_blank" rel="noopener">
+  {{ i18n "btn_pdf" }}
+  </a>
+  {{ end }}
+  {{ if .Params.url_handout }}
+  <a class="btn btn-primary btn-outline" href="/{{ $p.Dir }}{{ $p.Params.url_handout }}" target="_blank" rel="noopener">
+  Handout
+  </a>
+  {{ end }}
 
   {{ $paginator := .Paginate .Data.Pages }}
-  {{ range $paginator.Pages.ByWeight.Reverse -}}
+  {{ range $paginator.Pages.ByWeight -}}
   <div>
     <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <div class="article-style">
@@ -51,8 +62,20 @@
       {{ with .Params.icon }}<div class="featurette-icon"><a href="{{ $p.Permalink }}"><i class="{{ $pack }} {{ $pack }}-{{ . }}"></i></a></div>{{ end }}
       <a href="{{ .Permalink }}"><h3>{{ .Params.name | markdownify | emojify }}</h3></a>
       {{ with .Params.description }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+      {{ if .Params.url_pdf }}
+      <a class="btn btn-primary btn-outline" href="/{{ $p.Dir }}{{ $p.Params.url_pdf }}" target="_blank" rel="noopener">
+      {{ i18n "btn_pdf" }}
+      </a>
+      {{ end }}
+      {{ if .Params.url_handout }}
+      <a class="btn btn-primary btn-outline" href="/{{ $p.Dir }}{{ $p.Params.url_handout }}" target="_blank" rel="noopener">
+      Handout
+      </a>
+      {{ end }}
+      <hr>
       </div>
       {{ end }}
+      
   </div>
 {{ partial "footer_container.html" . }}
 {{ partial "footer.html" . }}

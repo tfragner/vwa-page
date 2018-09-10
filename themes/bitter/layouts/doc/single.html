@@ -5,7 +5,7 @@
 
 <div class="container body-content docs">
   <div class="row">
-    <div class="col-sm-9 col-md-9 body">
+    <div class="col-sm-12 col-md-12 body">
       <article class="article" itemscope itemtype="http://schema.org/Article">
         {{ partial "header_image.html" . }}
         <div class="article-container">
@@ -45,14 +45,6 @@
       <div class="body-footer">
         {{ i18n "last_updated" }} {{ $.Lastmod.Format $.Site.Params.date_format }}
       </div>
-    </div>
-    <div class="hidden-xs col-sm-3 col-md-3">
-      <nav id="docs-subnavbar" class="affix">
-        {{ partial "toc" . }}
-        <ul class="nav article-toc-top">
-          <li><a href="#">Back to Top</a></li>
-        </ul>
-      </nav>
     </div>
   </div>
 </div>
